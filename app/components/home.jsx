@@ -5,6 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 import isTouch from "../utils/isTouch";
+import lenis from "../utils/scroll";
 
 import Header from "./Header";
 import Foot from "./foot";
@@ -46,6 +47,63 @@ export default function Home() {
       document.removeEventListener("mousemove", setCoordMouse);
       document.removeEventListener("mouseout");
       document.removeEventListener("mouseover");
+    };
+  }, []);
+
+  useEffect(() => {
+    const order = document.querySelector(".order");
+    const orderOpenButtons = document.querySelectorAll(".order-open");
+    const orderCloseButton = document.querySelector(".order__close");
+
+    const openOrder = (e) => {
+      e.preventDefault();
+      const nowScroll = window.scrollY;
+
+      // Store current scroll position in CSS variable
+      document.documentElement.style.setProperty(
+        "--scroll-before-popup",
+        nowScroll
+      );
+
+      if (!document.documentElement.classList.contains("touch")) {
+        lenis.stop(); // Stop smooth scrolling
+      }
+
+      order.classList.add("open");
+    };
+
+    const closeOrder = (e) => {
+      e.preventDefault();
+
+      if (!document.documentElement.classList.contains("touch")) {
+        lenis.start(); // Resume smooth scrolling
+      }
+
+      order.classList.remove("open");
+
+      // Scroll back to the previous position
+      window.scrollTo({
+        top: parseInt(
+          document.documentElement.style.getPropertyValue(
+            "--scroll-before-popup"
+          ),
+          10
+        ),
+      });
+    };
+
+    // Attach event listeners
+    orderOpenButtons.forEach((button) =>
+      button.addEventListener("click", openOrder)
+    );
+    orderCloseButton.addEventListener("click", closeOrder);
+
+    // Cleanup on component unmount
+    return () => {
+      orderOpenButtons.forEach((button) =>
+        button.removeEventListener("click", openOrder)
+      );
+      orderCloseButton.removeEventListener("click", closeOrder);
     };
   }, []);
 
