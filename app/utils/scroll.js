@@ -1,11 +1,13 @@
 import isTouch from './isTouch.js';
 import dynamic from 'next/dynamic';
 
-const Lenis = dynamic(() => import('lenis'), { ssr: false });
+const Lenis = dynamic(() => import('lenis'), {
+    ssr: false
+});
 
 let lenis;
 
-if (typeof window !== 'undefined' && !isTouch()) {
+if (!!window && typeof window !== 'undefined' && !isTouch()) {
     lenis = new Lenis({
         autoRaf: true,
         duration: 1.2,
@@ -62,7 +64,7 @@ function setIsVerticalScroll() {
 }
 
 // Ensure the code runs only on the client side (inside useEffect)
-if (typeof window !== 'undefined') {
+if (!!window && typeof window !== 'undefined') {
     document.addEventListener('DOMContentLoaded', setIsScroll);
     window.addEventListener('scroll', setIsScroll);
     document.addEventListener('DOMContentLoaded', setIsVerticalScroll);
