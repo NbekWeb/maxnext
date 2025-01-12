@@ -1,0 +1,253 @@
+html:has(.order.open), body:has(.order.open) {
+  -webkit-overflow-scrolling: auto;
+  touch-action: none;
+}
+html:has(.order.open) {
+  scrollbar-width: none;
+}
+
+body:has(.order.open) {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body:has(.order.open)::-webkit-scrollbar {
+  display: none;
+}
+.order {
+  display: none;
+  position: fixed;
+  z-index: 1300;
+  width: 100vw;
+  height: 100dvh;
+  background-color: var(--primary-color);
+  flex-direction: column;
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    flex: 48;
+    @media (max-width: 600px) {
+      flex: 0;
+    };
+  }
+  &::after {
+    content: '';
+    display: block;
+    flex: 52;
+    @media (max-width: 600px) {
+      flex: 1;
+    };
+  }
+  &.open {
+    display: flex;
+  }
+  &__container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    justify-content: space-between;
+    align-items: flex-start;
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
+    @media (max-width: 600px) {
+      margin-top: 85px;
+      @include adaptivePixelProperty(margin-top, (120, 120, 85));
+    };
+  }
+
+  &__close {
+    display: block;
+    position: fixed;
+    @include adaptivePixelProperty(width, (58, 58, 20));
+    aspect-ratio: 1/1;
+    @include adaptivePixelProperty(right, (90, 70, 10));
+    @include adaptivePixelProperty(top, (50, 50, 16));
+    background: transparent;
+    cursor: pointer;
+    & > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__logo {
+    display: none;
+    position: fixed;
+    @include adaptivePixelProperty(width, (260, 170, 89));
+    height: auto;
+    aspect-ratio: 2.36/1;
+    @include adaptivePixelProperty(left, (90, 70, 10));
+    @include adaptivePixelProperty(top, (50, 50, 7));
+    @media (max-width: 600px) {
+      display: block;
+    };
+    & > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      fill: var(--accent-color);
+    }
+  }
+
+  &__title {
+    @include adaptivePixelProperty(max-width, (845, 545, 300));
+    font-weight: 300;
+    @include adaptivePixelProperty(font-size, (64, 44, 32));
+    color: var(--secondary-textColor);
+    @media (max-width: 900px) {
+      max-width: none;
+      @include adaptivePixelProperty(margin-bottom, (50, 40, 24));
+      align-self: center;
+    }
+    @media (max-width: 470px) {
+      max-width: none;
+      text-align: left;
+    }
+  }
+
+  &__title-accent {
+    color: var(--accent-textColor);
+  }
+
+  &__form {
+    @include adaptivePixelProperty(margin-bottom, (89, 70, 30));
+    @media (max-width: 900px) {
+      margin-bottom: 0px;
+    }
+  }
+}
+.order-form {
+  @include adaptivePixelProperty(width, (560, 368, 300));
+  max-width: 100%;
+  @media (max-width: 900px) {
+    width: 100%;
+    @include adaptivePixelProperty(padding-left, (300, 100, 53));
+  };
+  @media (max-width: 500px) {
+    padding-left: 0px;
+  }
+
+  &__field {
+    &:not(:last-of-type) {
+      @include adaptivePixelProperty(margin-bottom, (20, 20, 12));
+    }
+    &.open {
+      &__share {
+        display: flex;
+        justify-content: space-between;
+        @media (max-width: 800px) {
+          flex-direction: column;
+        }
+      }
+
+      &__subtitle {
+        @include adaptivePixelProperty(max-width, (874, 545, 300));
+        font-weight: 300;
+        @include adaptivePixelProperty(font-size, (64, 44, 32));
+        color: var(--secondary-textColor);
+        @media (max-width: 800px) {
+          max-width: none;
+          margin-bottom: 24px;
+        }
+      }
+
+      &__subtitle-accent {
+        color: var(--accent-textColor);
+      }
+
+      & .order-form__select {
+        display: flex;
+      }
+    }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    @include adaptivePixelProperty(height, (53, 43, 34));
+    @include adaptivePixelProperty(padding-left, (20, 20, 0));
+    border-bottom: 1px solid #aaa;
+    background: transparent;
+    @include adaptivePixelProperty(font-size, (20, 16, 14));
+    color: var(--secondary-textColor);
+    font-weight: 300;
+    &::placeholder {
+      @include adaptivePixelProperty(font-size, (20, 16, 14));
+      color: var(--secondary-textColor);
+      font-weight: 300;
+    }
+  }
+
+  &__input--select {
+    display: flex;
+    align-items: center;
+    @include adaptivePixelProperty(gap, (20, 10, 5));
+    cursor: pointer;
+    & > svg {
+      display: block;
+      @include adaptivePixelProperty(width, (10, 10, 8));
+      @include adaptivePixelProperty(height, (10, 10, 8));
+      @media (max-width: 500px) {
+        display: none;
+      }
+    }
+  }
+
+  &__group-field {
+    display: flex;
+    @include adaptivePixelProperty(column-gap, (40, 29, 20));
+    &__share {
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 800px) {
+        flex-direction: column;
+      }
+    }
+
+    &__subtitle {
+      @include adaptivePixelProperty(max-width, (874, 545, 300));
+      font-weight: 300;
+      @include adaptivePixelProperty(font-size, (64, 44, 32));
+      color: var(--secondary-textColor);
+      @media (max-width: 800px) {
+        max-width: none;
+        margin-bottom: 24px;
+      }
+    }
+
+    &__subtitle-accent {
+      color: var(--accent-textColor);
+    }
+
+    & > .order-form__field {
+      flex: 0 1 50%;
+    }
+    @media (max-width: 500px) {
+      flex-direction: column;
+      @include adaptivePixelProperty(margin-bottom, (20, 20, 12));
+    }
+  }
+
+  &__button {
+    --button-borderColor: var(--accent-color);
+    --button-textColor: var(--accent-color);
+
+    width: 100%;
+    @include adaptivePixelProperty(height, (53, 49, 53));
+    @include adaptivePixelProperty(border-radius, (50, 50, 30));
+    @include adaptivePixelProperty(margin-top, (41, 40, 24));
+    transition: all 0.5s;
+
+    & > span {
+      @include adaptivePixelProperty(font-size, (20, 16, 20));
+    }
+    &:hover {
+      --button-bgColor: var(--accent-color);
+      --button-textColor: var(--primary-color);
+    }
+  }
+}

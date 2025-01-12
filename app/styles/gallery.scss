@@ -1,0 +1,50 @@
+.gallery {
+  position: relative;
+
+  &__bg {
+    @include adaptiveVariable(paddingInline, (40, 20, 40));
+    @include adaptiveVariable(backgroundWidth, (384, 256, 173));
+    
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: calc(100% + var(--paddingInline) * 2px);
+    top: calc(var(--paddingInline) * -1px);
+    left: 0;
+    background: url("../../public/icon/back-gallery.svg");
+    background-size: calc(var(--backgroundWidth) * 1px) calc(var(--backgroundWidth) * 1px / 3.07);
+  }
+  &__container {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    @include adaptivePixelProperty(gap, (40, 20, 10));
+    @media (max-width: 550px) {
+      flex-direction: column-reverse;
+    };
+  }
+
+  &__image {
+    @include adaptiveVariable(gap, (40, 20, 10));
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+    width: calc(50% - var(--gap) * 1px / 2);
+    &:nth-child(1) {
+      @include adaptivePixelProperty(height, (578, 380, 167));
+      @include adaptivePixelProperty(margin-top, (102, 82, 20));
+      @media (max-width: 550px) {
+        @include adaptivePixelProperty(width, (862, 566, 247));
+        @include adaptivePixelProperty(margin-top, (0, 0, 0));
+      };
+    }
+    &:nth-child(2) {
+      @include adaptivePixelProperty(height, (561, 370, 134));
+      @media (max-width: 550px) {
+        @include adaptivePixelProperty(width, (860, 566, 247));
+        align-self: flex-end;;
+      };
+    }
+  }
+}
+

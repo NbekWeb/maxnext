@@ -1,0 +1,22 @@
+:root {
+  //Font
+  --primary-fontFamily: "Roboto", sans-serif;
+  --secondary-fontFamily: "Roboto Mono",  sans-serif;
+  --primary-fontWeight: 400;
+
+  //Color
+  --primary-color: #003A70;
+  --secondary-color: #F0F0F0;
+  --accent-color: #CEDC00;
+
+  //Text
+  --primary-textColor: #1D1D1D;
+  --secondary-textColor: var(--secondary-color);
+  --tertiary-textColor: #060D0C;
+  --accent-textColor: var(--accent-color);
+
+  //Bg
+  --primary-bgColor: #EAEAEA;
+  --secondary-bgColor: var(--primary-color);
+
+}

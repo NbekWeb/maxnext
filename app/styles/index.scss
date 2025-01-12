@@ -1,0 +1,31 @@
+@use 'sass:map';
+@use 'sass:list';
+
+@use './adaptiveMixin.scss' as *;
+
+@layer reset, default, library, themes, patterns, components;
+
+@import './init.scss';
+
+@import url("https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css") layer(library); 
+
+@layer patterns {
+  @import './button.scss';
+  @import './text.scss';
+  @import './block.scss';
+}
+
+@layer components {
+  @import './header.scss';
+  @import './footer.scss';
+  @import './horizontalScroll.scss';
+  @import './cursor.scss';
+  @import './scrollUp.scss';
+  @import './business.scss';
+  @import './contacts.scss';
+  @import './gallery.scss';
+  @import './hero.scss';
+  @import './order.scss';
+  @import './services.scss';
+  
+}

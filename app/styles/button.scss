@@ -1,0 +1,23 @@
+.base-button {
+  // --button-textColor: none;
+  // --button-bgColor: none;
+  // --button-borderColor: none;
+
+  display: flex;
+  background: var(--button-bgColor, transparent);
+  border: 1px solid var(--button-borderColor, transparent);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  & > span {
+    @include adaptiveVariable(padding-block, (10, 10, 6));
+
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - var(--padding-block) * 1px);
+    max-height: 100%;
+    color: var(--button-textColor, var(--accent-color));
+    line-height: 1;
+  }
+}

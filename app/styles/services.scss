@@ -1,0 +1,355 @@
+.services {
+  overflow-x: clip;
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  @include adaptivePixelProperty(margin-bottom, (200, 180, 35));
+  @include adaptivePixelProperty(padding-top, (250, 170, 70));
+  &::before {
+    content: '';
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    width: calc((100vw - 1920px) / 2 + 80px);
+    height: 100%;
+    background-color: var(--primary-bgColor);
+    left: 0px;
+    top: 0px;
+    @media (min-width: 1921px) {
+      display: block;
+    };
+  }
+  &::after {
+    content: '';
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    width: calc((100vw - 1920px) / 2 + 80px);
+    height: 100%;
+    background-color: var(--primary-bgColor);
+    left: 100%;
+    top: 0px;
+    translate: -100%;
+    @media (min-width: 1921px) {
+      display: block;
+    };
+  }
+  &__container {
+    position: relative;
+    &::before {
+      content: '';
+      display: none;
+      position: absolute;
+      z-index: 1000;
+      width: calc(var(--border) * 1px);
+      height: 100%;
+      background-color: var(--primary-bgColor);
+      left: 0px;
+      top: 0px;
+      translate: -100%;
+      @media (max-width: 1920px) {
+        display: block;
+      };
+    }
+    &::after {
+      content: '';
+      display: none;
+      position: absolute;
+      z-index: 1000;
+      width: calc(var(--border) * 1px);
+      height: 100%;
+      background-color: var(--primary-bgColor);
+      left: 100%;
+      top: 0px;
+      @media (max-width: 1920px) {
+        display: block;
+      };
+    }
+  }
+
+  &__title {
+    @include adaptivePixelProperty(margin-bottom, (48, 30, 20));
+  }
+
+  &__slider {
+  }
+
+  &__accordion {
+    display: grid;
+    position: relative;
+    z-index: 1;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    @include adaptivePixelProperty(padding-top, (80, 60, 20));
+    background-color: var(--primary-bgColor);
+    @media (max-width: 900px) {
+      display: block;
+    }
+    @media (max-width: 500px) {
+      order: 2;
+    }
+  }
+
+  &__bg {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    @include adaptivePixelProperty(width, (1555, 1022, 318));
+    aspect-ratio: 1.3/1;
+    @include adaptivePixelProperty(top, (-70, -50, -20));
+    left: 0px;
+    @media (max-width: 1000px) {
+      display: none;
+    }
+    & > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__point {
+  }
+}
+.services-slider {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  overflow: visible;
+
+  &__controls {
+    display: flex;
+    @include adaptivePixelProperty(margin-bottom, (40, 40, 20));
+    @include adaptivePixelProperty(gap, (78, 78, 20));
+    justify-content: flex-end;
+    @media (max-width: 500px) {
+      order: 1;
+      @include adaptivePixelProperty(margin-top, (20, 20, 16));
+      @include adaptivePixelProperty(margin-bottom, (30, 30, 20));
+      justify-content: center;
+    }
+  }
+
+  &__button-prev,
+  &__button-next {
+    display: block;
+    position: relative;
+    z-index: 1;
+    @include adaptivePixelProperty(width, (32, 32, 16));
+    aspect-ratio: 1/1;
+    background: transparent;
+    @media (max-width: 500px) {
+      background: url('../../public/icon/button-slider-mobile.svg') no-repeat;
+      background-size: 100% 100%;
+    }
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: -1;
+      height: 200%;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+    }
+    & > svg {
+      display: block;
+      position: absolute;
+      @include adaptivePixelProperty(width, (16, 16, 12));
+      aspect-ratio: 1/2;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      @media (max-width: 500px) {
+        display: none;
+      }
+    }
+  }
+
+  &__button-prev {
+    rotate: 180deg;
+  }
+
+  &__button-next {
+  }
+
+  &__wrapper {
+    position: sticky;
+    top: calc(var(--header-height) * 1px);
+
+    @media (max-width: 500px) {
+      order: 0;
+    }
+  }
+
+  &__slide {
+    width: 100%;
+    @include adaptivePixelProperty(height, (1060, 698, 180));
+    & > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__slide-image {
+  }
+}
+.services-point {
+  display: contents;
+  &:last-child &__header {
+    border-bottom: 1px solid #696969;
+  }
+  &.open,
+  &:has(.services-point__header:hover) {
+    & .services-point__title {
+      color: var(--primary-color);
+    }
+    & .services-point__title-accent {
+      opacity: 1;
+      visibility: visible;
+      @media (max-width: 900px) {
+        display: none;
+      }
+    }
+  }
+  &.open {
+    & .services-point__content {
+      display: block;
+    }
+  }
+  @media (max-width: 900px) {
+    display: block;
+    &:last-child &__header {
+      border-bottom: none;
+    }
+    &:first-child &__header {
+      border-top: none;
+    }
+  }
+
+  &__header {
+    position: relative;
+    width: 100%;
+    @include adaptivePixelProperty(max-width, (708, 467, 247));
+    @include adaptivePixelProperty(padding-top, (40, 40, 12));
+    @include adaptivePixelProperty(padding-bottom, (40, 40, 12));
+    border-top: 1px solid #696969;
+    grid-column: 1/2;
+    @include adaptivePixelProperty(margin-left, (300, 100, 53));
+    cursor: pointer;
+    @media (max-width: 900px) {
+      max-width: none;
+      width: auto;
+      @include adaptivePixelProperty(padding-bottom, (0, 0, 0));
+      @include adaptivePixelProperty(padding-bottom, (24, 24, 24));
+    }
+    @media (max-width: 500px) {
+      margin-left: 0px;
+    };
+  }
+
+  &__title-accent {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    width: 16px;
+    height: 26px;
+    top: 50%;
+    left: -14px;
+    translate: -100% -50%;
+    transition: 0.3s;
+  }
+
+  &__title {
+    font-weight: 300;
+    @include adaptivePixelProperty(font-size, (44, 32, 20));
+    color: #696969;
+    transition: 0.3s;
+  }
+
+  &__content {
+    display: none;
+    width: 100%;
+    @include adaptivePixelProperty(max-width, (560, 368, 247));
+    grid-column: 2/3;
+    grid-row: 1/7;
+    justify-self: end;
+    @media (max-width: 900px) {
+      @include adaptivePixelProperty(padding-bottom, (40, 40, 12));
+      @include adaptivePixelProperty(margin-left, (300, 100, 53));
+    }
+    @media (max-width: 500px) {
+      max-width: none;
+      @include adaptivePixelProperty(margin-left, (0, 0, 0));
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    @include adaptivePixelProperty(gap, (8, 7, 1));
+    &:not(:last-child) {
+      @include adaptivePixelProperty(margin-bottom, (40, 30, 24));
+    }
+  }
+
+  &__list-point {
+    position: relative;
+    @include adaptivePixelProperty(padding-left, (30, 24, 21));
+    &::before {
+      content: '•';
+      display: block;
+      position: absolute;
+      @include adaptivePixelProperty(left, (15, 12, 10.5));
+      translate: -50%;
+    }
+  }
+
+  &__button {
+    --button-textColor: var(--primary-color);
+    --button-borderColor: var(--primary-color);
+
+    width: 100%;
+    @include adaptivePixelProperty(height, (53, 50, 50));
+    @include adaptivePixelProperty(border-radius, (50, 50, 25));
+    border: 2px solid var(--button-borderColor);
+    transition: all 0.5s;
+    & > span {
+      @include adaptivePixelProperty(font-size, (20, 16, 14));
+    }
+    &:hover {
+      --button-bgColor: var(--primary-color);
+      --button-textColor: var(--accent-color);
+    }
+  }
+
+  &__paragraph {
+    &:not(:last-child) {
+      @include adaptivePixelProperty(margin-bottom, (40, 30, 24));
+    }
+  }
+
+  &__paragraph--margin-small {
+    &:not(:last-child) {
+      @include adaptivePixelProperty(margin-bottom, (16, 14, 8));
+    }
+  }
+}
+
+html.touch .services-point__button {
+  --button-bgColor: var(--primary-color);
+  --button-textColor: var(--accent-color);
+  & > span {
+    font-size: 20px;
+    font-weight: 300;
+  }
+}
+html.touch .services-slider__wrapper {
+  position: static;
+}

@@ -1,0 +1,27 @@
+.footer {
+  @include adaptivePixelProperty(padding-bottom, (200, 180, 60));
+  background-color: var(--secondary-bgColor);
+  margin-top: -1px;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 430px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      row-gap: 8px;
+      & > *:nth-child(2), & > *:nth-child(3) {
+        justify-self: end;
+      }
+      & > *:nth-child(3) {
+        grid-column: 2/3;
+      }
+    };
+  }
+
+  &__text {
+    @include adaptivePixelProperty(font-size, (20, 20, 14));
+    text-transform: capitalize;
+    color: #aaa;
+  }
+}

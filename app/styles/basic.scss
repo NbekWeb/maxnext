@@ -1,0 +1,38 @@
+@use 'sass:map';
+@use 'sass:list';
+@use "./adaptiveMixin.scss" as *;
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  
+}
+body {
+  background-color: var(--primary-bgColor);
+  color: var(--primary-textColor);
+  font-family: var(--primary-fontFamily);
+  font-weight: var(--primary-fontWeight);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  // padding-right: calc(var(--scrollbar-width) * 1px);
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+.container {
+  @include adaptiveVariable(border, (80, 60, 10));
+
+  // max-width: calc(#{map.get(list.nth($screenResolutions, 1), container) + px} + (var(--border) * 2px));
+  max-width: calc(1760px + var(--border) * 2px);
+  border-left: calc(var(--border) * 1px) solid transparent;
+  border-right: calc(var(--border) * 1px) solid transparent;
+  margin: 0 auto;
+}
