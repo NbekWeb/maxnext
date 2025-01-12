@@ -7,7 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import isTouch from "../utils/isTouch";
 import lenis from "../utils/scroll";
 
-import Header from "./Header";
+import Header from "./header";
 import Foot from "./foot";
 import Order from "./order";
 import Hero from "./hero";
