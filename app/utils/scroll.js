@@ -1,5 +1,7 @@
 import isTouch from './isTouch.js';
-import Lenis from 'lenis';
+import dynamic from 'next/dynamic';
+
+const Lenis = dynamic(() => import('lenis'), { ssr: false });
 
 let lenis;
 
