@@ -32,16 +32,14 @@ const BurgerMenu = () => {
         "--scroll-before-popup",
         nowScroll
       );
-      if (!document.documentElement.classList.contains("touch")) {
-        lenis.stop();
-      }
+      
       burger.classList.add("open");
     });
 
     burgerClose.addEventListener("click", (e) => {
       e.preventDefault();
       if (!document.documentElement.classList.contains("touch")) {
-        lenis.start();
+        // lenis.start();
       }
       burger.classList.remove("open");
       window.scrollTo({

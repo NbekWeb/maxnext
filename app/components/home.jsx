@@ -19,6 +19,10 @@ import Contacts from "./contacts";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  function goto() {
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   useEffect(() => {
     const cursorPoint = document.querySelector(".cursor-point");
 
@@ -47,63 +51,6 @@ export default function Home() {
       document.removeEventListener("mousemove", setCoordMouse);
       document.removeEventListener("mouseout");
       document.removeEventListener("mouseover");
-    };
-  }, []);
-
-  useEffect(() => {
-    const order = document.querySelector(".order");
-    const orderOpenButtons = document.querySelectorAll(".order-open");
-    const orderCloseButton = document.querySelector(".order__close");
-
-    const openOrder = (e) => {
-      e.preventDefault();
-      const nowScroll = window.scrollY;
-
-      // Store current scroll position in CSS variable
-      document.documentElement.style.setProperty(
-        "--scroll-before-popup",
-        nowScroll
-      );
-
-      if (!document.documentElement.classList.contains("touch")) {
-        lenis.stop(); // Stop smooth scrolling
-      }
-
-      order.classList.add("open");
-    };
-
-    const closeOrder = (e) => {
-      e.preventDefault();
-
-      if (!document.documentElement.classList.contains("touch")) {
-        lenis.start(); // Resume smooth scrolling
-      }
-
-      order.classList.remove("open");
-
-      // Scroll back to the previous position
-      window.scrollTo({
-        top: parseInt(
-          document.documentElement.style.getPropertyValue(
-            "--scroll-before-popup"
-          ),
-          10
-        ),
-      });
-    };
-
-    // Attach event listeners
-    orderOpenButtons.forEach((button) =>
-      button.addEventListener("click", openOrder)
-    );
-    orderCloseButton.addEventListener("click", closeOrder);
-
-    // Cleanup on component unmount
-    return () => {
-      orderOpenButtons.forEach((button) =>
-        button.removeEventListener("click", openOrder)
-      );
-      orderCloseButton.removeEventListener("click", closeOrder);
     };
   }, []);
 
@@ -145,11 +92,7 @@ export default function Home() {
       </div>
       <div className="scroll-up">
         <div className="scroll-up__container container">
-          <a
-            className="scroll-up__link"
-            href="#hero"
-            data-anchor-position="0vw"
-          >
+          <span className="scroll-up__link" onClick={goto}>
             <svg
               width="42"
               height="42"
@@ -176,7 +119,7 @@ export default function Home() {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
+          </span>
         </div>
       </div>
     </>
