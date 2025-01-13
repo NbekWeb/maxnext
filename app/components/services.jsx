@@ -23,9 +23,10 @@ const ServicesSlider = () => {
     // Initialize accordion functionality
     let pointsContainer = document.querySelector(".services__accordion");
     if (document.documentElement.classList.contains("touch")) {
-      pointsContainer
-        .querySelector(".services-point.open")
-        .classList.remove("open");
+      const openPoint = pointsContainer.querySelector(".services-point.open");
+      if (openPoint) {
+        openPoint.classList.remove("open");
+      }
     }
 
     pointsContainer.addEventListener("click", (e) => {
