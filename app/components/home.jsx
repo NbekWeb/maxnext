@@ -6,7 +6,6 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import isTouch from "../utils/isTouch";
 
-
 import Header from "./header";
 import Foot from "./foot";
 import Order from "./order";
@@ -24,38 +23,45 @@ export default function Home() {
   }
 
   useEffect(() => {
+    // Cursor tracking animation
     const cursorPoint = document.querySelector(".cursor-point");
 
-    function setCoordMouse(e) {
+    const setCoordMouse = (e) => {
       gsap.to(cursorPoint, {
         left: e.clientX,
         top: e.clientY,
         stagger: 0.05,
         duration: 0.25,
       });
-    }
+    };
 
     document.addEventListener("mousemove", setCoordMouse);
 
-    document.addEventListener("mouseout", (event) => {
+    // Hide cursor on mouse out
+    const handleMouseOut = (event) => {
       if (!event.relatedTarget && !event.toElement) {
         cursorPoint.style.opacity = "0";
       }
-    });
+    };
 
-    document.addEventListener("mouseover", () => {
+    // Show cursor on mouse over
+    const handleMouseOver = () => {
       cursorPoint.style.opacity = "1";
-    });
+    };
+
+    document.addEventListener("mouseout", handleMouseOut);
+    document.addEventListener("mouseover", handleMouseOver);
 
     return () => {
       document.removeEventListener("mousemove", setCoordMouse);
-      // document.removeEventListener("mouseout");
-      // document.removeEventListener("mouseover");
+      document.removeEventListener("mouseout", handleMouseOut);
+      document.removeEventListener("mouseover", handleMouseOver);
     };
   }, []);
 
   useEffect(() => {
     if (!isTouch()) {
+      // Horizontal scroll animation for non-touch devices
       gsap.to(".horizontal-scroll-container", {
         x: "-100vw",
         ease: "none",
@@ -69,6 +75,7 @@ export default function Home() {
     }
 
     return () => {
+      // Cleanup ScrollTrigger instances
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);

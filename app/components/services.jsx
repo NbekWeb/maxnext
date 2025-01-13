@@ -34,9 +34,11 @@ const ServicesSlider = () => {
     });
 
     if (document.documentElement.classList.contains("touch")) {
-      pointsContainer
-        .querySelector(".services-point.open")
-        .classList.remove("open");
+      const openPoint = pointsContainer.querySelector(".services-point.open");
+      if (openPoint) {
+        console.log(openPoint.classList);
+        openPoint.classList.remove("open");
+      }
     }
 
     const handleAccordionClick = (e) => {
@@ -316,8 +318,6 @@ const ServicesSlider = () => {
               </section>
             </li>
           </ul>
-
-    
         </div>
       </div>
     </article>
