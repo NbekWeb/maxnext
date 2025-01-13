@@ -75,10 +75,38 @@ const ServicesSlider = () => {
         <div className="services__slider services-slider swiper">
           <div className="services-slider__controls">
             <button className="services-slider__button-prev">
-              <img src="/icon/arrow-slider.svg" alt="Previous Arrow" />
+              <svg
+                width="20"
+                height="36"
+                viewBox="0 0 20 36"
+                stroke="#003A70"
+                style={{ fill: "none" }}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 34L18 18L2 2"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
             <button className="services-slider__button-next">
-              <img src="/icon/arrow-slider.svg" alt="Next Arrow" />
+              <svg
+                width="20"
+                height="36"
+                viewBox="0 0 20 36"
+                stroke="#003A70"
+                style={{ fill: "none" }}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 34L18 18L2 2"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
           </div>
           <div className="services-slider__wrapper swiper-wrapper">
