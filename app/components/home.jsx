@@ -5,7 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 import isTouch from "../utils/isTouch";
-import lenis from "../utils/scroll";
+
 
 import Header from "./header";
 import Foot from "./foot";
@@ -49,8 +49,8 @@ export default function Home() {
 
     return () => {
       document.removeEventListener("mousemove", setCoordMouse);
-      document.removeEventListener("mouseout");
-      document.removeEventListener("mouseover");
+      // document.removeEventListener("mouseout");
+      // document.removeEventListener("mouseover");
     };
   }, []);
 

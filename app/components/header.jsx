@@ -1,12 +1,7 @@
 import { useEffect } from "react";
-import lenis from "../utils/scroll"; // Adjust path if needed
 
 const BurgerMenu = () => {
   useEffect(() => {
-    // Ensure Lenis is initialized only on the client side
-    if (!lenis) return;
-
-    // Burger hover and menu toggle interactions
     const burgerLinks = document.querySelectorAll(".burger__link");
     const burger = document.querySelector(".burger");
     const headerBurger = document.querySelector(".header__burger");
@@ -32,14 +27,14 @@ const BurgerMenu = () => {
         "--scroll-before-popup",
         nowScroll
       );
-      
+
       burger.classList.add("open");
     });
 
     burgerClose.addEventListener("click", (e) => {
       e.preventDefault();
       if (!document.documentElement.classList.contains("touch")) {
-        // lenis.start();
+        
       }
       burger.classList.remove("open");
       window.scrollTo({
@@ -61,7 +56,6 @@ const BurgerMenu = () => {
     };
   }, []);
   useEffect(() => {
-    
     const setColorHeader = () => {
       if (typeof document == "undefined") return;
 

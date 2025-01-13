@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import lenis from "../utils/scroll"; // Importing lenis for smooth scroll control.
 
 const OrderSection = () => {
   useEffect(() => {
@@ -18,7 +17,6 @@ const OrderSection = () => {
       );
 
       if (!document.documentElement.classList.contains("touch")) {
-        // lenis.stop(); 
       }
 
       order.classList.add("open");
@@ -28,7 +26,6 @@ const OrderSection = () => {
       e.preventDefault();
 
       if (!document.documentElement.classList.contains("touch")) {
-        // lenis.start(); 
       }
 
       order.classList.remove("open");
