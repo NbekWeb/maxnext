@@ -1,6 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { api } from "../utils/api";
 
 const Contacts = () => {
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    try {
+      const response = await api({
+        url: "conf-site/contact/",
+        method: "GET",
+      });
+
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching banner data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   useEffect(() => {
     const selectField = document.querySelector(
       ".contacts-form__field:has(.contacts-form__input--select)"
@@ -43,42 +63,17 @@ const Contacts = () => {
       <div className="contacts__cotnainer container">
         <h2 className="contacts__title base-title">contacts</h2>
         <div className="contacts__units">
-          <address className="contacts__unit">
-            <h4 className="contacts__unit-title">Maintenance unit</h4>
-            <a
-              className="contacts__unit-mail"
-              href="mailto:salem.mutahar@max-tech.aero"
-            >
-              salem.mutahar@max-tech.aero
-            </a>
-            <a href="tel:+971551515695" className="contacts__unit-phone">
-              +971 55 151 5695
-            </a>
-          </address>
-          <address className="contacts__unit">
-            <h4 className="contacts__unit-title">Commercial unit</h4>
-            <a
-              className="contacts__unit-mail"
-              href="mailto:commerce@max-tech.aero"
-            >
-              commerce@max-tech.aero
-            </a>
-            <a href="tel:+971547096492" className="contacts__unit-phone">
-              +971 54 709 6492
-            </a>
-          </address>
-          <address className="contacts__unit">
-            <h4 className="contacts__unit-title">Logistics unit</h4>
-            <a
-              className="contacts__unit-mail"
-              href="mailto:logistics@max-tech.aero"
-            >
-              logistics@max-tech.aero
-            </a>
-            <a href="tel:+971547096491" className="contacts__unit-phone">
-              +971 54 709 6491
-            </a>
-          </address>
+          {data.map((item, index) => (
+            <address className="contacts__unit" key={index}>
+              <h4 className="contacts__unit-title"> {item.title}</h4>
+              <a className="contacts__unit-mail" href={`mailto:${item.email}`}>
+                salem.mutahar@max-tech.aero
+              </a>
+              <a href={`tel:+${item.phone}`} className="contacts__unit-phone">
+                +{item.phone.slice(0, 3)} {item.phone.slice(3, 5)} {item.phone.slice(5, 8)} {item.phone.slice(8)}
+              </a>
+            </address>
+          ))}
         </div>
         <div className="contacts__addresses">
           <address className="contacts__address">
