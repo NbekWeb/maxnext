@@ -4,7 +4,6 @@ const BusinessSection = () => {
   return (
     <article id="business" className="business">
       <div className="business__bg">
-        {/* Include the back-business icon */}
         <img src="/icon/back-business.svg" alt="Business background icon" />
       </div>
       <div className="business__container container">
