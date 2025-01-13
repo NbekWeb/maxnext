@@ -6,7 +6,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 const ServicesSlider = () => {
   useEffect(() => {
-    const swiper = new Swiper(".services-slider", {
+    // Initialize Swiper
+    new Swiper(".services-slider", {
       modules: [Navigation],
       navigation: {
         nextEl: ".services-slider__button-next",
@@ -14,43 +15,29 @@ const ServicesSlider = () => {
         disabledClass: "disabled",
       },
       loop: true,
-      allowTouchMove: document.documentElement.classList.contains("touch"),
+      allowTouchMove: document.documentElement.classList.contains("touch")
+        ? true
+        : false,
     });
 
-    // Accordion functionality
-
-    const pointsContainer = document.querySelector(".services__accordion");
-
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.to(".services__bg img", {
-      y: "20%", // Moves the background image at a slower rate
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".services__slider",
-        start: "top bottom", // Trigger when the top of the container reaches the bottom of the viewport
-        end: "bottom top", // End when the bottom of the container reaches the top of the viewport
-        scrub: true, // Smooth scrolling
-      },
-    });
-
+    // Initialize accordion functionality
+    let pointsContainer = document.querySelector(".services__accordion");
     if (document.documentElement.classList.contains("touch")) {
-      const openPoint = pointsContainer.querySelector(".services-point.open");
-      if (openPoint) {
-        console.log(openPoint.classList);
-        openPoint.classList.remove("open");
-      }
+      pointsContainer
+        .querySelector(".services-point.open")
+        .classList.remove("open");
     }
 
-    const handleAccordionClick = (e) => {
-      const pointHeader = e.target.closest(".services-point__header");
-      if (!pointHeader) return;
-
-      const point = pointHeader.closest(".services-point");
-      const openPoint = pointsContainer.querySelector(".services-point.open");
+    pointsContainer.addEventListener("click", (e) => {
+      let pointHeader = e.target.closest(".services-point__header");
+      if (!pointHeader) {
+        return;
+      }
+      let point = pointHeader.closest(".services-point");
+      let openPoint = pointsContainer.querySelector(".services-point.open");
       if (openPoint) {
         openPoint.classList.remove("open");
       }
-
       if (point === openPoint) {
         if (!document.documentElement.classList.contains("touch")) {
           point.classList.add("open");
@@ -58,13 +45,11 @@ const ServicesSlider = () => {
       } else {
         point.classList.add("open");
       }
-    };
+    });
 
-    pointsContainer.addEventListener("click", handleAccordionClick);
-
-    // Cleanup
+    // Cleanup event listener when component unmounts
     return () => {
-      pointsContainer.removeEventListener("click", handleAccordionClick);
+      pointsContainer.removeEventListener("click", () => {});
     };
   }, []);
 

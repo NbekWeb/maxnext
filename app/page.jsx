@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import "./styles/index.scss";
-import "swiper/css";
-import "swiper/css/navigation";
+// import "swiper/css";
+// import "swiper/css/navigation";
 
 import dynamic from "next/dynamic";
 

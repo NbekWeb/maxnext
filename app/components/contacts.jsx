@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Contacts = () => {
+  useEffect(() => {
+    const selectField = document.querySelector(
+      ".contacts-form__field:has(.contacts-form__input--select)"
+    );
+    const input = selectField.querySelector(".contacts-form__input");
+    const options = selectField.querySelector(".contacts-form__select");
+
+    const toggleSelect = (e) => {
+      selectField.classList.toggle("open");
+    };
+
+    const toggleOption = (e) => {
+      let option = e.target.closest(".contacts-form__option");
+      if (!option) {
+        return;
+      }
+      option.classList.toggle("choosed");
+    };
+
+    input.addEventListener("click", toggleSelect);
+    selectField.addEventListener("click", toggleOption);
+
+    // Cleanup event listeners on component unmount
+    return () => {
+      input.removeEventListener("click", toggleSelect);
+      selectField.removeEventListener("click", toggleOption);
+    };
+  }, []);
+
   return (
     <article id="contacts" className="contacts">
       <div className="contacts__bg">
@@ -138,42 +167,90 @@ const Contacts = () => {
                 <div className="contacts-form__option">
                   <span className="contacts-form__option-active">
                     {/* Include your SVG icon here */}
-                    <img src="/icon/tab-active.svg" alt="Active" />
+                    <svg
+                      width="16"
+                      height="26"
+                      viewBox="0 0 16 26"
+                      fill="#003A70"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                    </svg>
                   </span>
                   Aircraft line maintenance services
                 </div>
                 <div className="contacts-form__option">
                   <span className="contacts-form__option-active">
                     {/* Include your SVG icon here */}
-                    <img src="/icon/tab-active.svg" alt="Active" />
+                    <svg
+                      width="16"
+                      height="26"
+                      viewBox="0 0 16 26"
+                      fill="#003A70"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                    </svg>
                   </span>
                   Ramp support unit
                 </div>
                 <div className="contacts-form__option">
                   <span className="contacts-form__option-active">
                     {/* Include your SVG icon here */}
-                    <img src="/icon/tab-active.svg" alt="Active" />
+                    <svg
+                      width="16"
+                      height="26"
+                      viewBox="0 0 16 26"
+                      fill="#003A70"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                    </svg>
                   </span>
                   Tools, equipment leasing and consumable supply
                 </div>
                 <div className="contacts-form__option">
                   <span className="contacts-form__option-active">
                     {/* Include your SVG icon here */}
-                    <img src="/icon/tab-active.svg" alt="Active" />
+                    <svg
+                      width="16"
+                      height="26"
+                      viewBox="0 0 16 26"
+                      fill="#003A70"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                    </svg>
                   </span>
                   Technical store collection/delivery (logistic) services
                 </div>
                 <div className="contacts-form__option">
                   <span className="contacts-form__option-active">
                     {/* Include your SVG icon here */}
-                    <img src="/icon/tab-active.svg" alt="Active" />
+                    <svg
+                      width="16"
+                      height="26"
+                      viewBox="0 0 16 26"
+                      fill="#003A70"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                    </svg>
                   </span>
                   Technical store space leasing, tools management
                 </div>
                 <div className="contacts-form__option">
                   <span className="contacts-form__option-active">
                     {/* Include your SVG icon here */}
-                    <img src="/icon/tab-active.svg" alt="Active" />
+                    <svg
+                      width="16"
+                      height="26"
+                      viewBox="0 0 16 26"
+                      fill="#003A70"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                    </svg>
                   </span>
                   Aircraft headset services
                 </div>
