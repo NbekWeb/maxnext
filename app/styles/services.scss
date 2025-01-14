@@ -1,11 +1,16 @@
 .services {
   overflow-x: clip;
   position: relative;
-  z-index: -1;
+  z-index: 1;
   max-width: 100%;
   @include adaptivePixelProperty(margin-bottom, (200, 180, 35));
   @include adaptivePixelProperty(padding-top, (250, 170, 70));
-
+.bg-svg{
+  z-index: -1;
+  border: 1px solid red;
+  overflow-y: hidden !important;
+  max-height: 100px;
+}
   &::before {
     content: '';
     display: none;

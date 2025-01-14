@@ -5,9 +5,8 @@ import { api } from "../utils/api";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-const ServicesSlider = () => {
+const ServicesSlider = ({ img }) => {
   const [data, setData] = useState([]);
-  const [img, setImg] = useState([]);
 
   const getData = async () => {
     try {
@@ -17,19 +16,6 @@ const ServicesSlider = () => {
       });
 
       setData(response.data);
-    } catch (error) {
-      console.error("Error fetching banner data:", error);
-    }
-  };
-
-  const getImg = async () => {
-    try {
-      const response = await api({
-        url: "conf-site/service-carousel/",
-        method: "GET",
-      });
-
-      setImg(response.data);
     } catch (error) {
       console.error("Error fetching banner data:", error);
     }
@@ -54,22 +40,30 @@ const ServicesSlider = () => {
 
   useEffect(() => {
     getData();
-    getImg();
   }, []);
   useEffect(() => {
+    if (img.length > 0) {
+      // Initialize Swiper only after images are loaded
+      new Swiper(".services-slider", {
+        modules: [Navigation],
+        navigation: {
+          nextEl: ".services-slider__button-next",
+          prevEl: ".services-slider__button-prev",
+          disabledClass: "disabled",
+        },
+        loop: true,
+        allowTouchMove: document.documentElement.classList.contains("touch")
+          ? true
+          : false,
+      });
+
+      // Cleanup Swiper instance when component unmounts
+      
+    }
+  }, [img]);
+
+  useEffect(() => {
     // Initialize Swiper
-    new Swiper(".services-slider", {
-      modules: [Navigation],
-      navigation: {
-        nextEl: ".services-slider__button-next",
-        prevEl: ".services-slider__button-prev",
-        disabledClass: "disabled",
-      },
-      loop: true,
-      allowTouchMove: document.documentElement.classList.contains("touch")
-        ? true
-        : false,
-    });
 
     // Initialize accordion functionality
     let pointsContainer = document.querySelector(".services__accordion");

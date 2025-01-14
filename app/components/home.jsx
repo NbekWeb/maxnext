@@ -20,6 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const [data, setData] = useState([]);
   const [services, setServices] = useState([]);
+  const [img, setImg] = useState([]);
 
   const getData = async () => {
     try {
@@ -46,9 +47,22 @@ export default function Home() {
       console.error("Error fetching banner data:", error);
     }
   };
+  const getImg = async () => {
+    try {
+      const response = await api({
+        url: "conf-site/service-carousel/",
+        method: "GET",
+      });
+
+      setImg(response.data);
+    } catch (error) {
+      console.error("Error fetching banner data:", error);
+    }
+  };
 
   useEffect(() => {
     getData();
+    getImg();
     getServices();
   }, []);
 
@@ -130,7 +144,7 @@ export default function Home() {
             </div>
           </div>
           <Gallery />
-          <Services />
+          <Services img={img} />
           <Contacts data={data} services={services} />
         </main>
         <Foot />
