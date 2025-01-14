@@ -35,6 +35,23 @@ const ServicesSlider = () => {
     }
   };
 
+  function openOrder  (e)  {
+    const order = document.querySelector(".order");
+    e.preventDefault();
+    const nowScroll = window.scrollY;
+
+    // Store current scroll position in CSS variable
+    document.documentElement.style.setProperty(
+      "--scroll-before-popup",
+      nowScroll
+    );
+
+    if (!document.documentElement.classList.contains("touch")) {
+    }
+
+    order.classList.add("open");
+  };
+
   useEffect(() => {
     getData();
     getImg();
@@ -175,7 +192,11 @@ const ServicesSlider = () => {
                       ))}
                     </ul>
                   )}
-                  <button className="services-point__button base-button order-open">
+                  <button
+                    onClick={openOrder}
+                    className="services-point__button base-button order-open"
+                    type="button"
+                  >
                     <span>Place order</span>
                   </button>
                 </section>
