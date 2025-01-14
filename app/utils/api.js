@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL || 'http://217.114.7.66:9090/api/v1/',
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL || 'https://api.successpathrf.ru/api/v1/',
 });
 
 // API wrapper function (no authentication needed)
