@@ -87,7 +87,16 @@ const OrderSection = () => {
           </svg>
         </a>
         <button className="order__close">
-          <img src="/icon/cross.svg" alt="Close" />
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="#CEDC00"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M7.20777 0.361084H0L12.8176 20.0001H19.9999L7.20777 0.361084Z" />
+            <path d="M12.7922 0H20L7.18242 19.639H0.000101089L12.7922 0Z" />
+          </svg>
         </button>
         <h3 className="order__title">
           Leave your message and we'll be{" "}
