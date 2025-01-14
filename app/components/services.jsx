@@ -162,11 +162,11 @@ const ServicesSlider = () => {
             <div className="services__bg">
               <img src="/icon/back-business.svg" alt="Background Icon" />
             </div>
-            {data?.map((service) => (
+            {data?.map((service,i) => (
               <li
                 key={service.id}
                 className={`services__point services-point ${
-                  service.id === 1 ? "open" : ""
+                 i === 0 ? "open" : ""
                 }`}
                 id={`services-point-${service.id}`}
               >
