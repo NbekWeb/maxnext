@@ -83,11 +83,93 @@ const Contacts = ({ data = [], services = [] }) => {
     <article id="contacts" className="contacts">
       <div className="contacts__bg">
         {/* Include your SVG image here */}
-        <img src="/icon/back-contacts.svg" alt="Background" />
+        <svg
+          width="1231"
+          height="1174"
+          viewBox="0 0 1231 1174"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 -94L381.371 1174H784.447L401.449 -94H0Z"
+            fill="url(#paint0_linear_2035_589)"
+            fillOpacity="0.1"
+          />
+          <path
+            d="M855.315 -94L1236.58 1174H1639.65L1256.76 -94H855.315Z"
+            fill="url(#paint1_linear_2035_589)"
+            fillOpacity="0.1"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_2035_589"
+              x1="392.224"
+              y1="471.5"
+              x2="392.224"
+              y2="1174"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#326295" />
+              <stop offset="1" stopColor="#101F2F" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_2035_589"
+              x1="1247.48"
+              y1="471.5"
+              x2="1247.48"
+              y2="1174"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#326295" />
+              <stop offset="1" stopColor="#101F2F" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
       <div className="contacts__bg">
         {/* Include your SVG image here */}
-        <img src="/icon/back-contacts.svg" alt="Background" />
+        <svg
+          width="1231"
+          height="1174"
+          viewBox="0 0 1231 1174"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 -94L381.371 1174H784.447L401.449 -94H0Z"
+            fill="url(#paint0_linear_2035_589)"
+            fillOpacity="0.1"
+          />
+          <path
+            d="M855.315 -94L1236.58 1174H1639.65L1256.76 -94H855.315Z"
+            fill="url(#paint1_linear_2035_589)"
+            fillOpacity="0.1"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_2035_589"
+              x1="392.224"
+              y1="471.5"
+              x2="392.224"
+              y2="1174"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#326295" />
+              <stop offset="1" stopColor="#101F2F" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_2035_589"
+              x1="1247.48"
+              y1="471.5"
+              x2="1247.48"
+              y2="1174"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#326295" />
+              <stop offset="1" stopColor="#101F2F" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
       <div className="contacts__cotnainer container">
         <h2 className="contacts__title base-title">contacts</h2>

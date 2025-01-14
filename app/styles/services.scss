@@ -1,10 +1,11 @@
 .services {
   overflow-x: clip;
   position: relative;
-  z-index: 1;
+  z-index: -1;
   max-width: 100%;
   @include adaptivePixelProperty(margin-bottom, (200, 180, 35));
   @include adaptivePixelProperty(padding-top, (250, 170, 70));
+
   &::before {
     content: '';
     display: none;
@@ -15,10 +16,14 @@
     background-color: var(--primary-bgColor);
     left: 0px;
     top: 0px;
+
     @media (min-width: 1921px) {
       display: block;
-    };
+    }
+
+    ;
   }
+
   &::after {
     content: '';
     display: none;
@@ -30,12 +35,18 @@
     left: 100%;
     top: 0px;
     translate: -100%;
+
     @media (min-width: 1921px) {
       display: block;
-    };
+    }
+
+    ;
   }
+
   &__container {
     position: relative;
+    z-index: 9999;
+
     &::before {
       content: '';
       display: none;
@@ -47,10 +58,14 @@
       left: 0px;
       top: 0px;
       translate: -100%;
+
       @media (max-width: 1920px) {
         display: block;
-      };
+      }
+
+      ;
     }
+
     &::after {
       content: '';
       display: none;
@@ -61,9 +76,12 @@
       background-color: var(--primary-bgColor);
       left: 100%;
       top: 0px;
+
       @media (max-width: 1920px) {
         display: block;
-      };
+      }
+
+      ;
     }
   }
 
@@ -71,8 +89,7 @@
     @include adaptivePixelProperty(margin-bottom, (48, 30, 20));
   }
 
-  &__slider {
-  }
+  &__slider {}
 
   &__accordion {
     display: grid;
@@ -82,9 +99,11 @@
     column-gap: 10px;
     @include adaptivePixelProperty(padding-top, (80, 60, 20));
     background-color: var(--primary-bgColor);
+
     @media (max-width: 900px) {
       display: block;
     }
+
     @media (max-width: 500px) {
       order: 2;
     }
@@ -99,19 +118,21 @@
     aspect-ratio: 1.3/1;
     @include adaptivePixelProperty(top, (-70, -50, -20));
     left: 0px;
+
     @media (max-width: 1000px) {
       display: none;
     }
-    & > svg {
+
+    &>svg {
       display: block;
       width: 100%;
       height: 100%;
     }
   }
 
-  &__point {
-  }
+  &__point {}
 }
+
 .services-slider {
   display: flex;
   position: relative;
@@ -123,6 +144,7 @@
     @include adaptivePixelProperty(margin-bottom, (40, 40, 20));
     @include adaptivePixelProperty(gap, (78, 78, 20));
     justify-content: flex-end;
+
     @media (max-width: 500px) {
       order: 1;
       @include adaptivePixelProperty(margin-top, (20, 20, 16));
@@ -139,10 +161,12 @@
     @include adaptivePixelProperty(width, (32, 32, 16));
     aspect-ratio: 1/1;
     background: transparent;
+
     @media (max-width: 500px) {
       background: url('../../public/icon/button-slider-mobile.svg') no-repeat;
       background-size: 100% 100%;
     }
+
     &::before {
       content: '';
       display: block;
@@ -155,7 +179,8 @@
       left: 50%;
       translate: -50% -50%;
     }
-    & > svg {
+
+    &>svg {
       display: block;
       position: absolute;
       @include adaptivePixelProperty(width, (16, 16, 12));
@@ -163,6 +188,7 @@
       top: 50%;
       left: 50%;
       translate: -50% -50%;
+
       @media (max-width: 500px) {
         display: none;
       }
@@ -173,8 +199,7 @@
     rotate: 180deg;
   }
 
-  &__button-next {
-  }
+  &__button-next {}
 
   &__wrapper {
     position: sticky;
@@ -188,7 +213,8 @@
   &__slide {
     width: 100%;
     @include adaptivePixelProperty(height, (1060, 698, 180));
-    & > img {
+
+    &>img {
       display: block;
       width: 100%;
       height: 100%;
@@ -196,37 +222,45 @@
     }
   }
 
-  &__slide-image {
-  }
+  &__slide-image {}
 }
+
 .services-point {
   display: contents;
+
   &:last-child &__header {
     border-bottom: 1px solid #696969;
   }
+
   &.open,
   &:has(.services-point__header:hover) {
     & .services-point__title {
       color: var(--primary-color);
     }
+
     & .services-point__title-accent {
       opacity: 1;
       visibility: visible;
+
       @media (max-width: 900px) {
         display: none;
       }
     }
   }
+
   &.open {
     & .services-point__content {
       display: block;
     }
   }
+
   @media (max-width: 900px) {
     display: block;
+
     &:last-child &__header {
       border-bottom: none;
     }
+
     &:first-child &__header {
       border-top: none;
     }
@@ -242,15 +276,19 @@
     grid-column: 1/2;
     @include adaptivePixelProperty(margin-left, (300, 100, 53));
     cursor: pointer;
+
     @media (max-width: 900px) {
       max-width: none;
       width: auto;
       @include adaptivePixelProperty(padding-bottom, (0, 0, 0));
       @include adaptivePixelProperty(padding-bottom, (24, 24, 24));
     }
+
     @media (max-width: 500px) {
       margin-left: 0px;
-    };
+    }
+
+    ;
   }
 
   &__title-accent {
@@ -280,10 +318,12 @@
     grid-column: 2/3;
     grid-row: 1/7;
     justify-self: end;
+
     @media (max-width: 900px) {
       @include adaptivePixelProperty(padding-bottom, (40, 40, 12));
       @include adaptivePixelProperty(margin-left, (300, 100, 53));
     }
+
     @media (max-width: 500px) {
       max-width: none;
       @include adaptivePixelProperty(margin-left, (0, 0, 0));
@@ -294,6 +334,7 @@
     display: flex;
     flex-direction: column;
     @include adaptivePixelProperty(gap, (8, 7, 1));
+
     &:not(:last-child) {
       @include adaptivePixelProperty(margin-bottom, (40, 30, 24));
     }
@@ -302,6 +343,7 @@
   &__list-point {
     position: relative;
     @include adaptivePixelProperty(padding-left, (30, 24, 21));
+
     &::before {
       content: '•';
       display: block;
@@ -320,9 +362,11 @@
     @include adaptivePixelProperty(border-radius, (50, 50, 25));
     border: 2px solid var(--button-borderColor);
     transition: all 0.5s;
-    & > span {
+
+    &>span {
       @include adaptivePixelProperty(font-size, (20, 16, 14));
     }
+
     &:hover {
       --button-bgColor: var(--primary-color);
       --button-textColor: var(--accent-color);
@@ -345,11 +389,13 @@
 html.touch .services-point__button {
   --button-bgColor: var(--primary-color);
   --button-textColor: var(--accent-color);
-  & > span {
+
+  &>span {
     font-size: 20px;
     font-weight: 300;
   }
 }
+
 html.touch .services-slider__wrapper {
   position: static;
 }

@@ -35,7 +35,7 @@ const ServicesSlider = () => {
     }
   };
 
-  function openOrder  (e)  {
+  function openOrder(e) {
     const order = document.querySelector(".order");
     e.preventDefault();
     const nowScroll = window.scrollY;
@@ -50,7 +50,7 @@ const ServicesSlider = () => {
     }
 
     order.classList.add("open");
-  };
+  }
 
   useEffect(() => {
     getData();
@@ -160,19 +160,68 @@ const ServicesSlider = () => {
 
           <ul className="services__accordion">
             <div className="services__bg">
-              <img src="/icon/back-business.svg" alt="Background Icon" />
+              <svg
+                width="1556"
+                height="1203"
+                viewBox="0 0 1556 1203"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0L361.821 1203H744.235L380.87 0H0Z"
+                  fill="url(#paint0_linear_416_481)"
+                  fillOpacity="0.04"
+                ></path>
+                <path
+                  d="M811.47 0L1173.19 1203H1555.6L1192.34 0H811.47Z"
+                  fill="url(#paint1_linear_416_481)"
+                  fillOpacity="0.04"
+                ></path>
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_416_481"
+                    x1="372.118"
+                    y1="2"
+                    x2="372.118"
+                    y2="1702.5"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#939393"></stop>
+                    <stop offset="1" stopColor="#EAEAEA"></stop>
+                  </linearGradient>
+                  <linearGradient
+                    id="paint1_linear_416_481"
+                    x1="1183.54"
+                    y1="2"
+                    x2="1183.54"
+                    y2="1702.5"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#939393"></stop>
+                    <stop offset="1" stopColor="#EAEAEA"></stop>
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
-            {data?.map((service,i) => (
+            {data?.map((service, i) => (
               <li
                 key={service.id}
                 className={`services__point services-point ${
-                 i === 0 ? "open" : ""
+                  i === 0 ? "open" : ""
                 }`}
                 id={`services-point-${service.id}`}
               >
                 <header className="services-point__header">
                   <span className="services-point__title-accent">
-                    <img src="/icon/tab-active.svg" alt="Tab Active Icon" />
+                    <svg
+                      width="16"
+                      height="26"
+                      viewBox="0 0 16 26"
+                      fill="#003A70"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                    </svg>
                   </span>
                   <h3 className="services-point__title">{service.name}</h3>
                 </header>
