@@ -1,9 +1,34 @@
 import { useEffect } from "react";
+import Link from "next/link";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import isTouch from "../utils/isTouch";
 
 const BurgerMenu = () => {
-  useEffect(() => {
-    const burgerLinks = document.querySelectorAll(".burger__link");
+  function goTo(val = "") {
     const burger = document.querySelector(".burger");
+
+    burger.classList.remove("open");
+
+    if (val != "") {
+      const targetElement = document.getElementById(val);
+      console.log(targetElement);
+      if (targetElement) {
+        if (val == "business" && !isTouch())
+          document.documentElement.scrollTo({
+            top: window.innerWidth, // Position calculated based on the target element
+            behavior: "smooth",
+          });
+        else {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    } else {
+      document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+  useEffect(() => {
+    const burger = document.querySelector(".burger");
+    const burgerLinks = document.querySelectorAll(".burger__link");
     const headerBurger = document.querySelector(".header__burger");
     const burgerClose = document.querySelector(".burger__close");
 
@@ -11,6 +36,7 @@ const BurgerMenu = () => {
       link.addEventListener("mouseover", () => {
         link.classList.add("hoverin");
       });
+
       link.addEventListener("mouseout", () => {
         link.classList.remove("hoverin");
         link.classList.add("hoverout");
@@ -54,6 +80,7 @@ const BurgerMenu = () => {
       burgerClose.removeEventListener("click", () => {});
     };
   }, []);
+
   useEffect(() => {
     const setColorHeader = () => {
       if (typeof document == "undefined") return;
@@ -235,23 +262,39 @@ const BurgerMenu = () => {
           <nav className="burger__links" aria-label="Burger Menu Navigation">
             <div className="burger__links-wrapper">
               <a
-                href="#hero"
+                href="#dabba"
                 className="burger__link"
                 data-anchor-position="0vw"
+                onClick={() => {
+                  goTo("");
+                }}
               >
                 MAIN PAGE
               </a>
               <a
-                href="#business"
+                onClick={() => {
+                  goTo("business");
+                }}
                 className="burger__link"
                 data-anchor-position="100vw"
               >
                 The Business
               </a>
-              <a href="#services" className="burger__link">
+
+              <a
+                className="burger__link"
+                onClick={() => {
+                  goTo("services");
+                }}
+              >
                 Services
               </a>
-              <a href="#contacts" className="burger__link">
+              <a
+                onClick={() => {
+                  goTo("contacts");
+                }}
+                className="burger__link"
+              >
                 Contacts
               </a>
             </div>

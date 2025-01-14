@@ -106,7 +106,7 @@ const ServicesSlider = () => {
   }, []);
 
   return (
-    <article className="services">
+    <article className="services" id="services">
       <div className="services__container container">
         <h2 className="services__title base-title">services</h2>
         <div className="services__slider services-slider swiper">

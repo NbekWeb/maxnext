@@ -47,8 +47,6 @@ export default function Home() {
     }
   };
 
-  
-
   useEffect(() => {
     getData();
     getServices();
@@ -124,8 +122,12 @@ export default function Home() {
         <Order />
         <main className="main">
           <div className="horizontal-scroll-container">
-            <Hero />
-            <Business />
+            <div id="hero">
+              <Hero />
+            </div>
+            <div id="business">
+              <Business />
+            </div>
           </div>
           <Gallery />
           <Services />
