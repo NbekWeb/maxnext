@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
+import { api } from "../utils/api";
 import isTouch from "../utils/isTouch";
 
 import Header from "./header";
@@ -18,6 +18,40 @@ import Contacts from "./contacts";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const [data, setData] = useState([]);
+  const [services, setServices] = useState([]);
+
+  const getData = async () => {
+    try {
+      const response = await api({
+        url: "conf-site/contact/",
+        method: "GET",
+      });
+
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching banner data:", error);
+    }
+  };
+
+  const getServices = async () => {
+    try {
+      const response = await api({
+        url: "conf-site/services/",
+        method: "GET",
+      });
+
+      setServices(response.data);
+    } catch (error) {
+      console.error("Error fetching banner data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+    getServices();
+  }, []);
+
   function goto() {
     document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -93,7 +127,7 @@ export default function Home() {
           </div>
           <Gallery />
           <Services />
-          <Contacts />
+          <Contacts data={data} services={services} />
         </main>
         <Foot />
       </div>

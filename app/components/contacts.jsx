@@ -1,25 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../utils/api";
 
-const Contacts = () => {
-  const [data, setData] = useState([]);
+const Contacts = ({ data = [], services = [] }) => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [content, setContent] = useState("");
+  const [selectedIds, setSelectedIds] = useState([]);
 
-  const getData = async () => {
-    try {
-      const response = await api({
-        url: "conf-site/contact/",
-        method: "GET",
-      });
+  const goPost = async () => {
+    if (email && phone && name && selectedIds.length > 0 && content) {
+      try {
+        // Make the API call
+        const response = await api({
+          url: "conf-site/place-order/",
+          method: "POST",
+          data: {
+            email,
+            name,
+            phone,
+            service_list: selectedIds,
+            msg: content,
+          },
+        });
 
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching banner data:", error);
+        // Reset state variables after successful submission
+        setEmail(""); // Assuming email is a state variable
+        setName(""); // Assuming name is a state variable
+        setPhone(""); // Assuming phone is a state variable
+        setContent(""); // Assuming content is a state variable
+        setSelectedIds([]); // Assuming selectedIds is a state variable
+
+        document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (error) {
+        console.error("Error posting data:", error);
+      }
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const handleClick = (id) => {
+    setSelectedIds((prevIds) => {
+      if (prevIds.includes(id)) {
+        // If the id is already in the array, remove it
+        return prevIds.filter((itemId) => itemId !== id);
+      } else {
+        // Otherwise, add it to the array
+        return [...prevIds, id];
+      }
+    });
+  };
 
   useEffect(() => {
     const selectField = document.querySelector(
@@ -63,14 +92,15 @@ const Contacts = () => {
       <div className="contacts__cotnainer container">
         <h2 className="contacts__title base-title">contacts</h2>
         <div className="contacts__units">
-          {data.map((item, index) => (
+          {data?.map((item, index) => (
             <address className="contacts__unit" key={index}>
               <h4 className="contacts__unit-title"> {item.title}</h4>
               <a className="contacts__unit-mail" href={`mailto:${item.email}`}>
                 salem.mutahar@max-tech.aero
               </a>
               <a href={`tel:+${item.phone}`} className="contacts__unit-phone">
-                +{item.phone.slice(0, 3)} {item.phone.slice(3, 5)} {item.phone.slice(5, 8)} {item.phone.slice(8)}
+                +{item.phone.slice(0, 3)} {item.phone.slice(3, 5)}{" "}
+                {item.phone.slice(5, 8)} {item.phone.slice(8)}
               </a>
             </address>
           ))}
@@ -105,13 +135,15 @@ const Contacts = () => {
             </span>{" "}
             about the service provided.
           </h3>
-          <form action="" className="contacts__form contacts-form">
+          <form className="contacts__form contacts-form">
             <h4 className="contacts-form__title">
               Leave your message and we'll be sure to respond.
             </h4>
             <div className="contacts-form__field">
               <input
                 type="text"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
                 className="contacts-form__input"
                 placeholder="Name"
               />
@@ -120,12 +152,16 @@ const Contacts = () => {
               <div className="contacts-form__field">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
                   className="contacts-form__input"
                   placeholder="E-mail"
                 />
               </div>
               <div className="contacts-form__field">
                 <input
+                  value={phone}
+                  onChange={(event) => setPhone(event.target.value)}
                   type="text"
                   className="contacts-form__input"
                   placeholder="Phone"
@@ -159,108 +195,40 @@ const Contacts = () => {
                 </svg>
               </span>
               <div className="contacts-form__select">
-                <div className="contacts-form__option">
-                  <span className="contacts-form__option-active">
-                    {/* Include your SVG icon here */}
-                    <svg
-                      width="16"
-                      height="26"
-                      viewBox="0 0 16 26"
-                      fill="#003A70"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
-                    </svg>
-                  </span>
-                  Aircraft line maintenance services
-                </div>
-                <div className="contacts-form__option">
-                  <span className="contacts-form__option-active">
-                    {/* Include your SVG icon here */}
-                    <svg
-                      width="16"
-                      height="26"
-                      viewBox="0 0 16 26"
-                      fill="#003A70"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
-                    </svg>
-                  </span>
-                  Ramp support unit
-                </div>
-                <div className="contacts-form__option">
-                  <span className="contacts-form__option-active">
-                    {/* Include your SVG icon here */}
-                    <svg
-                      width="16"
-                      height="26"
-                      viewBox="0 0 16 26"
-                      fill="#003A70"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
-                    </svg>
-                  </span>
-                  Tools, equipment leasing and consumable supply
-                </div>
-                <div className="contacts-form__option">
-                  <span className="contacts-form__option-active">
-                    {/* Include your SVG icon here */}
-                    <svg
-                      width="16"
-                      height="26"
-                      viewBox="0 0 16 26"
-                      fill="#003A70"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
-                    </svg>
-                  </span>
-                  Technical store collection/delivery (logistic) services
-                </div>
-                <div className="contacts-form__option">
-                  <span className="contacts-form__option-active">
-                    {/* Include your SVG icon here */}
-                    <svg
-                      width="16"
-                      height="26"
-                      viewBox="0 0 16 26"
-                      fill="#003A70"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
-                    </svg>
-                  </span>
-                  Technical store space leasing, tools management
-                </div>
-                <div className="contacts-form__option">
-                  <span className="contacts-form__option-active">
-                    {/* Include your SVG icon here */}
-                    <svg
-                      width="16"
-                      height="26"
-                      viewBox="0 0 16 26"
-                      fill="#003A70"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
-                    </svg>
-                  </span>
-                  Aircraft headset services
-                </div>
+                {services.map((item, i) => (
+                  <div
+                    key={i}
+                    className="contacts-form__option"
+                    onClick={() => handleClick(item.id)}
+                  >
+                    <span className="contacts-form__option-active">
+                      <svg
+                        width="16"
+                        height="26"
+                        viewBox="0 0 16 26"
+                        fill="#003A70"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                      </svg>
+                    </span>
+                    {item.name}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="contacts-form__field">
               <input
+                value={content}
+                onChange={(event) => setContent(event.target.value)}
                 type="text"
                 className="contacts-form__input"
                 placeholder="Your message"
               />
             </div>
-            <button className="contacts-form__button base-button">
+            <div className="contacts-form__button base-button" onClick={goPost}>
               <span>Send message</span>
-            </button>
+            </div>
           </form>
         </section>
       </div>
