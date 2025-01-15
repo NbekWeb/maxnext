@@ -4,8 +4,9 @@ import { Navigation } from "swiper/modules";
 import { api } from "../utils/api";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Image from "next/image";
 
-const ServicesSlider = ({ img=[] }) => {
+const ServicesSlider = ({ img = [] }) => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
@@ -163,15 +164,15 @@ const ServicesSlider = ({ img=[] }) => {
           <div className="services-slider__wrapper swiper-wrapper">
             {img.map((item, i) => (
               <div key={i} className="services-slider__slide swiper-slide">
-                <img
+                <Image
+                  width={1080}
+                  height={800}
                   className="services-slider__slide-image"
                   src={item?.image}
                   alt="Service Image One"
                 />
               </div>
             ))}
-
-            
           </div>
 
           <ul className="services__accordion">
@@ -267,7 +268,7 @@ const ServicesSlider = ({ img=[] }) => {
                 </section>
               </li>
             ))}
-             {data?.map((service, i) => (
+            {data?.map((service, i) => (
               <li
                 key={service.id}
                 className={`services__point services-point ${
