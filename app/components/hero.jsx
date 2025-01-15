@@ -8,7 +8,7 @@ const HeroSection = () => {
         src="/hero-image-one.webp"
         alt="Hero Background Image"
         priority
-        layout="fill"
+        fill
         quality={100}
         className="hero__bg-image"
       />

@@ -4,6 +4,23 @@ import { useEffect, useState } from "react";
 import isTouchDevice from "./utils/isTouch";
 import { api } from "./utils/api";
 
+import { Roboto, Roboto_Mono } from "next/font/google";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  style: ["normal"], // Include specific styles
+  variable: "--font-roboto", // CSS variable for dynamic use
+  display: "swap", // Use 'swap' for better performance
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  variable: "--font-roboto-mono",
+  display: "swap",
+});
+
 export default function RootLayout({ children }) {
   const [data, setData] = useState({});
   const getData = async () => {
@@ -68,19 +85,11 @@ export default function RootLayout({ children }) {
     };
   }, []);
   return (
-    <html lang="en">
+    <html lang="en" className={`${roboto.variable} ${robotoMono.variable}`}>
       <head>
         <title>{data?.title}</title>
         <meta name="description" content={data?.description} />
         <meta name="keywords" content={data?.keywords} />
-        <link
-          href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic"
-          rel="stylesheet"
-        />
       </head>
       <body>
         <ReactLenis
