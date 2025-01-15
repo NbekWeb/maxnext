@@ -262,7 +262,7 @@ const BurgerMenu = () => {
           <nav className="burger__links" aria-label="Burger Menu Navigation">
             <div className="burger__links-wrapper">
               <a
-                href="#dabba"
+                href="#"
                 className="burger__link"
                 data-anchor-position="0vw"
                 onClick={() => {
@@ -272,6 +272,7 @@ const BurgerMenu = () => {
                 MAIN PAGE
               </a>
               <a
+                href="#"
                 onClick={() => {
                   goTo("business");
                 }}
@@ -282,6 +283,7 @@ const BurgerMenu = () => {
               </a>
 
               <a
+                href="#"
                 className="burger__link"
                 onClick={() => {
                   goTo("services");
@@ -290,6 +292,7 @@ const BurgerMenu = () => {
                 Services
               </a>
               <a
+                href="#"
                 onClick={() => {
                   goTo("contacts");
                 }}
