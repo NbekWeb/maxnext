@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const BusinessSection = () => {
   return (
@@ -62,9 +63,11 @@ const BusinessSection = () => {
           </p>
         </div>
         <figure className="business__image">
-          <img
-            src="/business-image-one.jpg"
+          <Image
+            src="/business-image-one.webp"
             alt="Business image"
+            width={560}
+            height={355}
             className="business__image-wraper"
           />
           <figcaption className="business__image-caption base-text">
