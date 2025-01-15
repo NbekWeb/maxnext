@@ -5,7 +5,7 @@ import { api } from "../utils/api";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-const ServicesSlider = ({ img }) => {
+const ServicesSlider = ({ img=[] }) => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
@@ -52,13 +52,33 @@ const ServicesSlider = ({ img }) => {
           disabledClass: "disabled",
         },
         loop: true,
+        slidesPerView: 1,
+        spaceBetween: 0,
         allowTouchMove: document.documentElement.classList.contains("touch")
           ? true
           : false,
       });
+      gsap.registerPlugin(ScrollTrigger);
 
-      // Cleanup Swiper instance when component unmounts
-      
+      const slides = document.querySelectorAll(".services-slider__slide");
+
+      // slides.forEach((slide) => {
+      // const image = slide.querySelector(".services-slider__slide-image");
+
+      gsap.fromTo(
+        slides,
+        { y: 50 }, // Start position (slightly above)
+        {
+          y: -50, // End position (slightly below)
+          scrollTrigger: {
+            trigger: slides,
+            start: "top bottom", // Start parallax when the slide comes into view
+            end: "bottom top", // End parallax when the slide leaves view
+            scrub: true, // Smooth scrolling effect
+          },
+        }
+      );
+      // });
     }
   }, [img]);
 
@@ -150,6 +170,8 @@ const ServicesSlider = ({ img }) => {
                 />
               </div>
             ))}
+
+            
           </div>
 
           <ul className="services__accordion">
@@ -198,6 +220,54 @@ const ServicesSlider = ({ img }) => {
               </svg>
             </div>
             {data?.map((service, i) => (
+              <li
+                key={service.id}
+                className={`services__point services-point ${
+                  i === 0 ? "open" : ""
+                }`}
+                id={`services-point-${service.id}`}
+              >
+                <header className="services-point__header">
+                  <span className="services-point__title-accent">
+                    <svg
+                      width="16"
+                      height="26"
+                      viewBox="0 0 16 26"
+                      fill="#003A70"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8.00242 0L0 13.0025L8.00242 26L16 13.0025L8.00242 0Z" />
+                    </svg>
+                  </span>
+                  <h3 className="services-point__title">{service.name}</h3>
+                </header>
+                <section className="services-point__content">
+                  <p className="services-point__paragraph base-text">
+                    {service.description}
+                  </p>
+                  {service.requirement_list.length > 0 && (
+                    <ul className="services-point__list">
+                      {service.requirement_list.map((req) => (
+                        <li
+                          key={req.id}
+                          className="services-point__list-point base-text"
+                        >
+                          {req.name}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <button
+                    onClick={openOrder}
+                    className="services-point__button base-button order-open"
+                    type="button"
+                  >
+                    <span>Place order</span>
+                  </button>
+                </section>
+              </li>
+            ))}
+             {data?.map((service, i) => (
               <li
                 key={service.id}
                 className={`services__point services-point ${
